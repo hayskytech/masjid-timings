@@ -49,67 +49,42 @@ export default function MasjidTimes() {
 
   return (
     <div>
-      <Modal
-        open={box}
-        onOpen={() => setBox(true)}
-        onClose={() => setBox(false)}
-        closeIcon
-        centered
-      >
-        <Modal.Content className="centered-modal-content"> {/* Added class for custom styling */}
-          <Form onSubmit={editid ? saveItem : null} id='mainForm'>
-            <h3>Namaz Timings</h3>
-            <table>
-              <tr>
-                <td>Name:</td>
-                <td><input type="text" value={Name} onChange={e => setName(e.target.value)} /></td>
-              </tr>
-              <tr>
-                <td>Fajr:</td>
-                <td><input type="time" value={Fajr} readOnly /></td>
-              </tr>
-              <tr>
-                <td>Zohar:</td>
-                <td><input type="time" value={Zohar} readOnly /></td>
-              </tr>
-              <tr>
-                <td>Asar:</td>
-                <td><input type="time" value={Asar} readOnly /></td>
-              </tr>
-              <tr>
-                <td>Magrib:</td>
-                <td><input type="time" value={Magrib} readOnly /></td>
-              </tr>
-              <tr>
-                <td>Isha:</td>
-                <td><input type="time" value={Isha} readOnly /></td>
-              </tr>
-              <tr>
-                <td>Juma:</td>
-                <td><input type="time" value={Juma} readOnly /></td>
-              </tr>
-            </table>
-          </Form>
-        </Modal.Content>
-      </Modal>
-      {user ? <Button onClick={() => setBox(true)} color='green'>Add Masjid</Button> : ''}
 
-      <List divided size='large' relaxed>
-        {Object.entries(list).map((item) =>
-          <List.Item
-            key={item[0]}>
-            {user &&
-              <List.Content floated='right'>
-                <Icon name='eye' size='big' onClick={() => { setBox(true); editItem(item[0]) }} />
-              </List.Content>
-            }
-            <List.Content>
-              <List.Header>{item[1].Name}</List.Header>
-              <List.Description>Nandikotkur</List.Description>
-            </List.Content>
-          </List.Item>
-        )}
-      </List>
-    </div >
+      <Form onSubmit={editid ? saveItem : null} id='mainForm'>
+        <h3>Namaz Timings</h3>
+        <table>
+          <tbody>
+            <tr>
+              <td>Name:</td>
+              <td>{Name}</td>
+            </tr>
+            <tr>
+              <td>Fajr:</td>
+              <td>{Fajr}</td>
+            </tr>
+            <tr>
+              <td>Zohar:</td>
+              <td>{Zohar}</td>
+            </tr>
+            <tr>
+              <td>Asar:</td>
+              <td>{Asar}</td>
+            </tr>
+            <tr>
+              <td>Magrib:</td>
+              <td>{Magrib}</td>
+            </tr>
+            <tr>
+              <td>Isha:</td>
+              <td>{Isha}</td>
+            </tr>
+            <tr>
+              <td>Juma:</td>
+              <td>{Juma}</td>
+            </tr>
+          </tbody>
+        </table>
+      </Form>
+    </div>
   )
 }
