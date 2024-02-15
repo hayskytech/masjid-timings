@@ -6,7 +6,7 @@ import { MyContext } from '../App'
 import { db } from '../firebase'
 
 export default function MasjidList() {
-  const { user } = useContext(MyContext)
+  const { user, params, setParams } = useContext(MyContext)
   const [box, setBox] = useState(false)
   const [Name, setName] = useState('')
   const [Fajr, setFajr] = useState('')
@@ -50,7 +50,6 @@ export default function MasjidList() {
     if (Name && Fajr && Zohar && Asar && Magrib && Juma && Isha) {
       set(ref(db, 'timings/masjid/' + editid), { Name, Fajr, Zohar, Asar, Magrib, Juma, Isha })
       seteditid(null)
-      console.log('saving');
       setBox(false)
     } else {
       window.alert('Please enter all the values')
@@ -101,21 +100,17 @@ export default function MasjidList() {
           </Form>
         </Modal.Content>
       </Modal>
-      {user ? <Button onClick={() => setBox(true)} color='green'>Add Masjid</Button> : ''}
+      {user?.uid === 'GpJxJx5BCgeP4evq28e9atUMY5c2' && <Button onClick={() => setBox(true)} color='green'>Add Masjid</Button>}
 
-      <List divided size='large' relaxed
-      // onItemClick={(e, data) => console.log('data')}
-      >
+      <List divided size='large' relaxed>
         {Object.entries(list).map((item) =>
-          <List.Item
-            onClick={(e, data) => console.log('data')}
-            key={item[0]}>
-            {user ?
+          <List.Item style={{ padding: 10 }} key={item[0]}>
+            {user?.uid === 'GpJxJx5BCgeP4evq28e9atUMY5c2' &&
               <List.Content floated='right'>
                 <Icon name='edit' size='big' onClick={() => { setBox(true); editItem(item[0]) }} />
-              </List.Content> : ''
+              </List.Content>
             }
-            <List.Content>
+            <List.Content onClick={() => setParams({ page: 'Masjid', key: item[0] })}>
               <List.Header>{item[1].Name}</List.Header>
               <List.Description>Nandikotkur</List.Description>
             </List.Content>

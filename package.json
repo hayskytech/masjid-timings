@@ -2,6 +2,7 @@
   "name": "masjid-timings",
   "version": "0.1.0",
   "private": true,
+  "homepage": "https://hayskytech.github.io/masjid-timings",
   "dependencies": {
     "firebase": "^10.8.0",
     "react": "^18.2.0",

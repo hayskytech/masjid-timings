@@ -7,10 +7,38 @@ import MasjidTimes from './comp/MasjidTimes';
 export const MyContext = createContext(null)
 
 export default function App() {
+  let urlParams = new URLSearchParams(window.location.search);
+  let paramsObject = {};
+  for (let pair of urlParams.entries()) {
+    paramsObject[pair[0]] = pair[1];
+  }
+
+  if (Object.keys(paramsObject).length === 0) {
+    paramsObject = { page: 'Home' }
+  }
+  const [params, setParams] = useState(paramsObject)
+
+  useEffect(() => {
+    for (const param in params) {
+      if (params.hasOwnProperty(param)) {
+        urlParams.set(param, params[param]);
+      }
+    }
+    if (params.page === 'Home') {
+      urlParams.delete('key');
+      // for (const key of urlParams.keys()) {
+      //   if (key !== 'page') {
+      //     urlParams.delete(key);
+      //   }
+      // }
+    }
+    const updatedUrl = `${window.location.origin}${window.location.pathname}?${urlParams.toString()}`;
+    window.history.replaceState({}, '', updatedUrl);
+  }, [params.page])
+
   const [user, setUser] = useState(null)
 
   const provider = new GoogleAuthProvider();
-
   useEffect(() => {
     const unsubscribeAuthState = onAuthStateChanged(auth, (user) => {
       setUser(user);
@@ -44,14 +72,15 @@ export default function App() {
   }
   return (
     <div>
-      <MyContext.Provider value={{ user, setUser }}>
+      <MyContext.Provider value={{ user, setUser, params, setParams }}>
         {user ?
           <Button color='red' onClick={doLogout}>Logout</Button>
           :
           <Button onClick={doLogin}>Login with Google</Button>
         }
-        {/* <MasjidList /> */}
-        <MasjidTimes />
+        <Button onClick={() => setParams({ page: 'Home' })}>Home</Button>
+        {params.page === 'Home' && <MasjidList />}
+        {params.page === 'Masjid' && <MasjidTimes />}
       </MyContext.Provider>
 
     </div>
