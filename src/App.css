@@ -17,6 +17,20 @@
   align-items: center;
   justify-content: center;
 }
+.table-container {
+  text-align: center;
+  margin: auto;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+}
+
+table {
+  text-align: center; 
+}
+
+
 
 .App-header {
   background-color: #282c34;
