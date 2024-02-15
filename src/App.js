@@ -3,6 +3,7 @@ import { auth } from './firebase';
 import MasjidList from './comp/MasjidList';
 import { GoogleAuthProvider, onAuthStateChanged, onIdTokenChanged, signInWithPopup, signOut } from 'firebase/auth';
 import { Button } from 'semantic-ui-react';
+import MasjidTimes from './comp/MasjidTimes';
 export const MyContext = createContext(null)
 
 export default function App() {
@@ -49,7 +50,8 @@ export default function App() {
           :
           <Button onClick={doLogin}>Login with Google</Button>
         }
-        <MasjidList />
+        {/* <MasjidList /> */}
+        <MasjidTimes />
       </MyContext.Provider>
 
     </div>
