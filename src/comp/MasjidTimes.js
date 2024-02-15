@@ -1,55 +1,30 @@
-import React, { useContext, useState, useEffect } from 'react';
-import { onValue, ref } from 'firebase/database';
-import { List, Icon } from 'semantic-ui-react';
-import { MyContext } from '../App';
-import { db } from '../firebase';
-
+import React from 'react'
 export default function MasjidTimes() {
-  const { user } = useContext(MyContext);
-  const [list, setList] = useState([]);
-
-  useEffect(() => {
-    const myRef = ref(db, 'timings/masjid/');
-    onValue(myRef, (snapshot) => {
-      const res = snapshot.val();
-      setList(res || []);
-    });
-  }, []);
-
   return (
-    <div style={{ textAlign: 'center', marginTop: '50px' }}>
+    <div style={{ marginTop: '50px', maxWidth: 400 }}>
       <h3>Namaz Timings</h3>
-      <div style={{ margin: 'auto', display: 'inline-block' }}>
-        <table style={{ borderCollapse: 'collapse', border: '1px solid black' }}>
-          <thead>
-            <tr>
-              <th style={{ border: '1px solid black', padding: '8px' }}>Name:</th>
-              <th style={{ border: '1px solid black', padding: '8px' }}>Name</th>
-            </tr>
-            <tr> <th style={{ border: '1px solid black', padding: '8px' }}>Fajr:</th>
-              <th style={{ border: '1px solid black', padding: '8px' }}>Time</th>
-            </tr>
-            <tr><th style={{ border: '1px solid black', padding: '8px' }}>Zohar:</th>
-              <th style={{ border: '1px solid black', padding: '8px' }}>Time</th>
-            </tr>
-            <tr> <th style={{ border: '1px solid black', padding: '8px' }}>Asar:</th>
-              <th style={{ border: '1px solid black', padding: '8px' }}>Time</th>
-            </tr>
-            <tr>  <th style={{ border: '1px solid black', padding: '8px' }}>Magrib:</th>
-              <th style={{ border: '1px solid black', padding: '8px' }}>Time</th>
-            </tr>
-            <tr> <th style={{ border: '1px solid black', padding: '8px' }}>Isha:</th>
-              <th style={{ border: '1px solid black', padding: '8px' }}>Time</th>
-            </tr>
-            <tr>
-              <th style={{ border: '1px solid black', padding: '8px' }}>Juma:</th>
-              <th style={{ border: '1px solid black', padding: '8px' }}>Time</th>
-            </tr>
-          </thead>
-          <tbody>
-          </tbody>
-        </table>
-      </div>
+      <table className='ui celled blue table unstackable'>
+        <tr>
+          <td>Fajr</td>
+          <td>5:30 AM</td>
+        </tr>
+        <tr>
+          <td>Zohar</td>
+          <td>1:30 PM</td>
+        </tr>
+        <tr>
+          <td>Asar</td>
+          <td>5:00 PM</td>
+        </tr>
+        <tr>
+          <td>Magrib</td>
+          <td>6:15 PM</td>
+        </tr>
+        <tr>
+          <td>Isha</td>
+          <td>8:15 PM</td>
+        </tr>
+      </table>
     </div>
-  );
+  )
 }
