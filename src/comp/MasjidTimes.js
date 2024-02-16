@@ -1,6 +1,6 @@
 import React, { useContext, useState, useEffect } from 'react';
 import { onValue, ref } from 'firebase/database';
-import { List, Icon } from 'semantic-ui-react';
+import { List, Icon, Table } from 'semantic-ui-react';
 import { MyContext } from '../App';
 import { db } from '../firebase';
 
@@ -19,36 +19,41 @@ export default function MasjidTimes() {
   return (
     <div style={{ textAlign: 'center', marginTop: '50px' }}>
       <h3>Namaz Timings</h3>
-      <div style={{ margin: 'auto', display: 'inline-block' }}>
-        <table style={{ borderCollapse: 'collapse', border: '1px solid black' }}>
-          <thead>
-            <tr>
-              <th style={{ border: '1px solid black', padding: '8px' }}>Name:</th>
-              <th style={{ border: '1px solid black', padding: '8px' }}>Name</th>
-            </tr>
-            <tr> <th style={{ border: '1px solid black', padding: '8px' }}>Fajr:</th>
-              <th style={{ border: '1px solid black', padding: '8px' }}>Time</th>
-            </tr>
-            <tr><th style={{ border: '1px solid black', padding: '8px' }}>Zohar:</th>
-              <th style={{ border: '1px solid black', padding: '8px' }}>Time</th>
-            </tr>
-            <tr> <th style={{ border: '1px solid black', padding: '8px' }}>Asar:</th>
-              <th style={{ border: '1px solid black', padding: '8px' }}>Time</th>
-            </tr>
-            <tr>  <th style={{ border: '1px solid black', padding: '8px' }}>Magrib:</th>
-              <th style={{ border: '1px solid black', padding: '8px' }}>Time</th>
-            </tr>
-            <tr> <th style={{ border: '1px solid black', padding: '8px' }}>Isha:</th>
-              <th style={{ border: '1px solid black', padding: '8px' }}>Time</th>
-            </tr>
-            <tr>
-              <th style={{ border: '1px solid black', padding: '8px' }}>Juma:</th>
-              <th style={{ border: '1px solid black', padding: '8px' }}>Time</th>
-            </tr>
-          </thead>
-          <tbody>
-          </tbody>
-        </table>
+      <div style={{ margin: 'auto', maxWidth: '800px' }}>
+        <Table celled textAlign='center'>
+          <Table.Header>
+            <Table.Row>
+              <Table.HeaderCell>Name</Table.HeaderCell>
+              <Table.HeaderCell>Masjid E Abubakkar</Table.HeaderCell>
+            </Table.Row>
+          </Table.Header>
+          <Table.Body>
+            <Table.Row>
+              <Table.Cell>Fajr</Table.Cell>
+              <Table.Cell>05:30 AM</Table.Cell>
+            </Table.Row>
+            <Table.Row>
+              <Table.Cell>Zohar</Table.Cell>
+              <Table.Cell>01:30 PM</Table.Cell>
+            </Table.Row>
+            <Table.Row>
+              <Table.Cell>Asar</Table.Cell>
+              <Table.Cell>04:30 PM</Table.Cell>
+            </Table.Row>
+            <Table.Row>
+              <Table.Cell>Magrib</Table.Cell>
+              <Table.Cell>06:30 PM</Table.Cell>
+            </Table.Row>
+            <Table.Row>
+              <Table.Cell>Isha</Table.Cell>
+              <Table.Cell>08:15 PM</Table.Cell>
+            </Table.Row>
+            <Table.Row>
+              <Table.Cell>Juma</Table.Cell>
+              <Table.Cell>02:00 PM</Table.Cell>
+            </Table.Row>
+          </Table.Body>
+        </Table>
       </div>
     </div>
   );
